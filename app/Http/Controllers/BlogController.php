@@ -14,11 +14,12 @@ class BlogController extends Controller
      */
     public function index()
     {
+        //      = select * from blogs
         $blogs = Blog::all();
         //dd($blogs);
 
         //          /blogs/index.blade.php
-        return view('blogs.index');
+        return view('blogs.index')->with(compact('blogs'));
     }
 
     /**
@@ -43,12 +44,17 @@ class BlogController extends Controller
         //dd($request);
 
         //Method 1
-        $blog = new Blog();
-        $blog->title = $request->get('title');
-        $blog->body = $request->get('body');
-        $blog->save();
+        // $blog = new Blog();
+        // $blog->title = $request->get('title');
+        // $blog->body = $request->get('body');
+        // $blog->save();
 
-        return view('blogs.index');
+        //Method 2 - Mass Assignment
+        $blog = Blog::create($request->only('title','body'));
+
+        // return view('blogs.index');
+        return redirect()->route('blog:index')->with(['alert-type' => 'alert-success','alert'=> 'Your blog saved']);
+
     }
 
     /**
