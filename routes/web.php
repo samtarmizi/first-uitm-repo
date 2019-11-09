@@ -22,6 +22,7 @@ Route::get('/testing',function(){
 Route::view('welcome','welcome');
 
 Route::get('/view', 'WelcomeController@view');
-Auth::routes();
+
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
