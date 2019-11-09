@@ -48,7 +48,16 @@
 
     Route::method('uri','ModelController@method')->name(method);
 
+#### Easy Way
 
+    php artisan make:model Model -a
+
+    - auto generate
+        model
+        factory
+        migrations
+        controller
+    
 
 
 
